@@ -1,0 +1,7 @@
+export enum Result {
+  FAIL,
+  SUCCESS,
+  HARD_SUCCESS,
+  EXTREME_SUCCESS,
+  FUMBLE
+}
