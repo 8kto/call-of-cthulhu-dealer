@@ -12,15 +12,15 @@ const headingStyles = {
   maxWidth: 320,
 };
 
-const IndexPage: React.FC<PageProps> = () => {
+const ShowcasePage: React.FC<PageProps> = () => {
   return (
     <main style={pageStyles}>
-      <h1 style={headingStyles}>TODO</h1>
+      <h1 style={headingStyles}>Showcase</h1>
       <p>TODO</p>
     </main>
   );
 };
 
-export default IndexPage;
+export default ShowcasePage;
 
-export const Head: HeadFC = () => <title>Home Page</title>;
+export const Head: HeadFC = () => <title>Showcase</title>;
