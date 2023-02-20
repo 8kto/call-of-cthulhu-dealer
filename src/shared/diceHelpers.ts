@@ -1,36 +1,36 @@
-import { Result } from "types";
+import { Result } from "types"
 
-// todo check ~round logic
 const getLevels = (base: number) => {
   return {
     fifth: Math.floor(base / 5),
     half: Math.floor(base / 2),
     base,
-  };
-};
+  }
+}
 
 /**
+ * Note: KG, p.90: hard success required (fumble broadens)
  * @param result A d100 throw result
- * @param base  The number a throw is against
+ * @param value  The number a throw is against
  */
-export const getThrowResult = (result: number, base: number = 0): Result => {
-  const isFail = result < base || result >= 96;
-  const { half, fifth } = getLevels(base);
+export const getThrowResult = (result: number, value: number): Result => {
+  const isFail = result > value || result >= 96
+  const { half, fifth } = getLevels(value)
 
   if (isFail) {
-    if ((base >= 50 && result === 100) || (base < 50 && result >= 96)) {
-      return Result.FUMBLE;
+    if ((value >= 50 && result === 100) || (value < 50 && result >= 96)) {
+      return Result.FUMBLE
     }
 
-    return Result.FAIL;
+    return Result.FAIL
   }
 
   if (result <= fifth) {
-    return Result.EXTREME_SUCCESS;
+    return Result.EXTREME_SUCCESS
   }
   if (result <= half) {
-    return Result.HARD_SUCCESS;
+    return Result.HARD_SUCCESS
   }
 
-  return Result.SUCCESS;
-};
+  return Result.SUCCESS
+}
