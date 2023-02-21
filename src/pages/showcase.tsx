@@ -1,5 +1,7 @@
-import * as React from 'react'
+import DiceWidget from 'components/DiceWidget'
 import type { HeadFC, PageProps } from 'gatsby'
+import * as React from 'react'
+
 
 const pageStyles = {
   color: '#232129',
@@ -16,7 +18,9 @@ const ShowcasePage: React.FC<PageProps> = () => {
   return (
     <main style={pageStyles}>
       <h1 style={headingStyles}>Showcase</h1>
-      <p>TODO</p>
+      <p>
+        <DiceWidget />
+      </p>
     </main>
   )
 }
