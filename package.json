@@ -24,6 +24,7 @@
     "gatsby": "^5.6.1",
     "gatsby-plugin-mdx": "^5.6.0",
     "gatsby-source-filesystem": "^5.6.0",
+    "random-js": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
