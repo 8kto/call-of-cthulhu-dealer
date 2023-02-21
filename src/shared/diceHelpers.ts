@@ -1,4 +1,4 @@
-import { Result } from "types"
+import { Result } from 'types'
 
 const getLevels = (base: number) => {
   return {
