@@ -1,27 +1,28 @@
 module.exports = {
-  roots: ["<rootDir>/src"],
-  moduleDirectories: ["node_modules", "src"],
+  roots: ['<rootDir>/src'],
+  moduleDirectories: ['node_modules', 'src'],
   // transform: {
   //   "^.+\\.[jt]sx?$": "<rootDir>/jest-preprocess.js",
   // },
   transform: {
-    "^.+\\.tsx?$": "ts-jest",
+    '^.+\\.tsx?$': 'ts-jest',
   },
   moduleNameMapper: {
-    ".+\\.(css|styl|less|sass|scss)$": `identity-obj-proxy`,
-    ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": `<rootDir>/__mocks__/file-mock.js`,
-    "src/(.*)": "<rootDir>/src/$1",
+    '.+\\.(css|styl|less|sass|scss)$': 'identity-obj-proxy',
+    '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/__mocks__/file-mock.js',
+    'src/(.*)': '<rootDir>/src/$1',
   },
-  testRegex: ".test.ts$",
-  testPathIgnorePatterns: [`node_modules`, `\\.cache`, `<rootDir>.*/public`],
+  testRegex: '.test.ts$',
+  testPathIgnorePatterns: ['node_modules', '\\.cache', '<rootDir>.*/public'],
   transformIgnorePatterns: [
-    `node_modules/(?!(gatsby|gatsby-script|gatsby-link)/)`,
+    'node_modules/(?!(gatsby|gatsby-script|gatsby-link)/)',
   ],
   globals: {
-    __PATH_PREFIX__: ``,
+    __PATH_PREFIX__: '',
   },
   testEnvironmentOptions: {
-    url: `http://localhost`,
+    url: 'http://localhost',
   },
-  setupFiles: [`<rootDir>/loadershim.js`],
-};
+  setupFiles: ['<rootDir>/loadershim.js'],
+}
