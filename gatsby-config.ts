@@ -1,20 +1,20 @@
-import type { GatsbyConfig } from "gatsby";
-import { IPluginRefOptions } from "gatsby";
-import path from "path";
-import fs from "fs";
+import type { GatsbyConfig } from 'gatsby'
+import { IPluginRefOptions } from 'gatsby'
+import path from 'path'
+import fs from 'fs'
 
-const srcDirs = fs.readdirSync(path.resolve(__dirname, "src"));
-const rootDirsConfig: IPluginRefOptions = {};
+const srcDirs = fs.readdirSync(path.resolve(__dirname, 'src'))
+const rootDirsConfig: IPluginRefOptions = {}
 
-srcDirs.forEach((srcDir) => {
-  rootDirsConfig[srcDir] = path.resolve(__dirname, "src", srcDir);
-});
+srcDirs.forEach(srcDir => {
+  rootDirsConfig[srcDir] = path.resolve(__dirname, 'src', srcDir)
+})
 
 // @ts-ignore
-srcDirs.forEach((srcDir) => {
+srcDirs.forEach(srcDir => {
   // @ts-ignore
-  rootDirsConfig[srcDir] = path.resolve(__dirname, "src", srcDir);
-});
+  rootDirsConfig[srcDir] = path.resolve(__dirname, 'src', srcDir)
+})
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -26,20 +26,20 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
-    "gatsby-plugin-mdx",
+    'gatsby-plugin-mdx',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "pages",
-        path: "./src/pages/",
+        name: 'pages',
+        path: './src/pages/',
       },
-      __key: "pages",
+      __key: 'pages',
     },
     {
-      resolve: "gatsby-plugin-root-import",
+      resolve: 'gatsby-plugin-root-import',
       options: rootDirsConfig,
     },
   ],
-};
+}
 
-export default config;
+export default config

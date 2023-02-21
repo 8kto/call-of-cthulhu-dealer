@@ -1,10 +1,10 @@
-import * as React from "react"
-import type { HeadFC, PageProps } from "gatsby"
+import * as React from 'react'
+import type { HeadFC, PageProps } from 'gatsby'
 
 const pageStyles = {
-  color: "#232129",
+  color: '#232129',
   padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
+  fontFamily: '-apple-system, Roboto, sans-serif, serif',
 }
 const headingStyles = {
   marginTop: 0,

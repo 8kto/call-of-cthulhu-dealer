@@ -32,14 +32,7 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          'parent',
-          'sibling',
-          'index',
-        ],
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
         'newlines-between': 'always',
         alphabetize: {
           order: 'asc',
@@ -48,6 +41,6 @@ module.exports = {
       },
     ],
     'newline-before-return': 'error',
-    'prefer-arrow-callback': [ "error", { "allowNamedFunctions": true } ]
-  }
+    'prefer-arrow-callback': ['error', { 'allowNamedFunctions': true }],
+  },
 }
