@@ -10,9 +10,28 @@ describe('dice helpers', () => {
     // 1-100
     const hundred = bottomFifty.concat(upperFifty)
 
+    describe('success', () => {
+      it.each(hundred.filter(i => i > 2 && i < 100))('should return success [%d]', input => {
+        expect(getThrowResult(input, input)).toEqual(Result.SUCCESS)
+        expect(getThrowResult(input - 1, input)).toEqual(Result.SUCCESS)
+      })
+    })
+
+    describe('hard success', () => {
+      it.each(hundred.filter(i => i > 1))('should return hard success [%d]', input => {
+        expect(getThrowResult(Math.floor(input / 2), input)).toEqual(Result.HARD_SUCCESS)
+      })
+    })
+
     describe('extreme success', () => {
       it.each(hundred.filter(i => i > 4))('should return extreme success [%d]', input => {
         expect(getThrowResult(Math.floor(input / 5), input)).toEqual(Result.EXTREME_SUCCESS)
+      })
+    })
+
+    describe('fail', () => {
+      it.each(hundred.filter(i => i < 99))('should return fail [%d]', input => {
+        expect(getThrowResult(input + 1, input)).toEqual(Result.FAIL)
       })
     })
 

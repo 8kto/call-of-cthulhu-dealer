@@ -14,7 +14,7 @@ const getLevels = (base: number) => {
  * @param value  The number a throw is against
  */
 export const getThrowResult = (result: number, value: number): Result => {
-  const isFail = result > value || result >= 96
+  const isFail = result > value || result === 100
   const { half, fifth } = getLevels(value)
 
   if (isFail) {
