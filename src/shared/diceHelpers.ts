@@ -34,3 +34,7 @@ export const getThrowResult = (result: number, value: number): Result => {
 
   return Result.SUCCESS
 }
+
+export const isSuccess = (value: Result) => {
+  return value >= Result.SUCCESS
+}
