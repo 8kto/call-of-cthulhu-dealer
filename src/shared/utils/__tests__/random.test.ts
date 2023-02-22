@@ -1,4 +1,4 @@
-import { roll } from 'shared/random'
+import { roll } from 'shared/utils/random'
 
 describe('random helpers', () => {
   describe('roll', () => {

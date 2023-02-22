@@ -1,4 +1,4 @@
-import { getThrowResult, isSuccess } from 'shared/diceHelpers'
+import { getThrowResult, isSuccess } from 'shared/utils/dice'
 import { Result } from 'types'
 
 describe('dice helpers', () => {
