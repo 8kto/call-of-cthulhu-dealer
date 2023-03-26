@@ -3,12 +3,12 @@ import { Result } from 'types'
 
 describe('dice helpers', () => {
   describe('getThrowResult', () => {
-    // 1-49
-    const bottomFifty = Array.from({ length: 49 }, (_, i) => i + 1)
-    // 50-100
-    const upperFifty = Array.from({ length: 51 }, (_, i) => i + 50)
     // 1-100
-    const hundred = bottomFifty.concat(upperFifty)
+    const hundred = Array.from({ length: 100 }, (_, i) => i + 1)
+    // 1-49
+    const bottomFifty = hundred.slice(0, 49)
+    // 50-100
+    const upperFifty = hundred.slice(50)
 
     describe('success', () => {
       it.each(hundred.filter(i => i > 2 && i < 100))('should return success [%d]', input => {
