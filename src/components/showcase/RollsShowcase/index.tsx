@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { getThrowResult } from 'shared/utils/dice'
 import { roll } from 'shared/utils/random'
 import { getThrowResultAsString } from 'shared/utils/translation'
 import { Dice } from 'types'
 
+// todo merge styles
 import './styles.scss'
 
 const RollsShowcase = () => {
@@ -17,9 +17,10 @@ const RollsShowcase = () => {
   }
 
   return (
-    <div style={{ border: '1px solid' }}>
+    <div className="content-container">
       <section>
         <h2>Roll d100</h2>
+        Enter the difficulty:
         <input
           type="text"
           value={difficulty}
@@ -29,6 +30,7 @@ const RollsShowcase = () => {
             addLog(`Set diffuculty to ` + difficulty)
           }}
         />
+        <br />
         <strong>Result: {resultD100 || ''}</strong>{' '}
         {resultD100 && <>({getThrowResultAsString(resultD100, difficulty)})</>}
         <br />
@@ -65,9 +67,12 @@ const RollsShowcase = () => {
       </section>
       <section>
         <h2>Log</h2>
-        {log.map(line => (
-          <p>{line}</p>
-        ))}
+        <div className="logging-content">
+          {log.map((line, id) => (
+            // @ts-ignore
+            <p id={id}>{line}</p>
+          ))}
+        </div>
       </section>
     </div>
   )

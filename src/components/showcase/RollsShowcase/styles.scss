@@ -1,3 +1,15 @@
 section {
   padding: 2rem
 }
+
+.content-container {
+  border: 1px solid
+}
+
+.logging-content {
+  max-height: 200px;
+  overflow-y: scroll;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y proximity;
+  border: 1px dashed;
+}
