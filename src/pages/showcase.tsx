@@ -1,25 +1,14 @@
-import * as React from 'react'
-import type { HeadFC, PageProps } from 'gatsby'
 import RollsShowcase from 'components/showcase/RollsShowcase'
 import TrackerShowcase from 'components/showcase/TrackerShowcase'
-
-// todo extract styles
-const pageStyles = {
-  color: '#232129',
-  padding: 96,
-  fontFamily: 'monospace',
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
+import type { HeadFC, PageProps } from 'gatsby'
+import * as React from 'react'
+import 'styles/styles.scss'
 
 const ShowcasePage: React.FC<PageProps> = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Showcase</h1>
-      <div style={{ display: 'flex' }}>
+    <main className="container content p-5">
+      <h1 className="title is-2">Showcase</h1>
+      <div className="columns">
         <RollsShowcase />
         <TrackerShowcase />
       </div>

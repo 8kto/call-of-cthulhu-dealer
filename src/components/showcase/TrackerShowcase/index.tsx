@@ -1,12 +1,10 @@
 import React from 'react'
 
-import './styles.scss'
-
 const TrackerShowcase = () => {
   return (
-    <div className="content-container">
-      <section>
-        <h2>Initiative tracker</h2>
+    <div className="column">
+      <section className="box">
+        <h2 className="title">Initiative tracker</h2>
       </section>
     </div>
   )

@@ -17,25 +17,27 @@ const RollsShowcase = () => {
   }
 
   return (
-    <div className="content-container">
-      <section>
+    <div className="column">
+      <section className="box mb-4">
         <h2>Roll d100</h2>
-        Enter the difficulty:
-        <input
-          type="text"
-          value={difficulty}
-          onChange={e => {
-            const difficulty = +e.target.value
-            setDifficulty(difficulty)
-            addLog(`Set diffuculty to ` + difficulty)
-          }}
-        />
-        <br />
-        <strong>Result: {resultD100 || ''}</strong>{' '}
-        {resultD100 && <>({getThrowResultAsString(resultD100, difficulty)})</>}
-        <br />
+        <div className="field">
+          <label className="label">Enter the difficulty</label>
+          <div className="control">
+            <input
+              type="text"
+              className="input"
+              value={difficulty}
+              onChange={e => {
+                const difficulty = +e.target.value
+                setDifficulty(difficulty)
+                addLog(`Set diffuculty to ` + difficulty)
+              }}
+            />
+          </div>
+        </div>
         <button
           type="button"
+          className="button is-primary"
           onClick={() => {
             const res = roll()
             setResultD100(res)
@@ -44,29 +46,36 @@ const RollsShowcase = () => {
         >
           Roll d100
         </button>
+        <p className="mt-2">
+          Result: <strong>{resultD100 || ''}</strong>({resultD100 && getThrowResultAsString(resultD100, difficulty)})
+        </p>
       </section>
-      <section>
-        <h2>Roll other dices</h2>
-        <strong>Result: {result || ''}</strong>
-        <br />
-        <button type="button" onClick={() => setResult(roll(Dice.d20))}>
-          Roll d20
-        </button>
-        <button type="button" onClick={() => setResult(roll(Dice.d10))}>
-          Roll d10
-        </button>
-        <button type="button" onClick={() => setResult(roll(Dice.d6))}>
-          Roll d6
-        </button>
-        <button type="button" onClick={() => setResult(roll(Dice.d4))}>
-          Roll d4
-        </button>
-        <button type="button" onClick={() => setResult(roll(Dice.d2))}>
-          Roll d2
-        </button>
+
+      <section className="box mb-4">
+        <h2 className="title">Roll other dices</h2>
+        <h3 className="subtitle">Result: {result || ''}</h3>
+
+        <div className="buttons">
+          <button type="button" className="button" onClick={() => setResult(roll(Dice.d20))}>
+            Roll d20
+          </button>
+          <button type="button" className="button" onClick={() => setResult(roll(Dice.d10))}>
+            Roll d10
+          </button>
+          <button type="button" className="button" onClick={() => setResult(roll(Dice.d6))}>
+            Roll d6
+          </button>
+          <button type="button" className="button" onClick={() => setResult(roll(Dice.d4))}>
+            Roll d4
+          </button>
+          <button type="button" className="button" onClick={() => setResult(roll(Dice.d2))}>
+            Roll d2
+          </button>
+        </div>
       </section>
-      <section>
-        <h2>Log</h2>
+
+      <section className="box mb-4">
+        <h2 className="title">Log</h2>
         <div className="logging-content">
           {log.map((line, id) => (
             // @ts-ignore
