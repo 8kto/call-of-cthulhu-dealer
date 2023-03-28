@@ -24,13 +24,14 @@ const RollsShowcase = () => {
           <label className="label">Enter the difficulty</label>
           <div className="control">
             <input
-              type="text"
+              type="number"
               className="input"
+              placeholder="Enter the difficulty"
               value={difficulty}
               onChange={e => {
                 const difficulty = +e.target.value
                 setDifficulty(difficulty)
-                addLog(`Set diffuculty to ` + difficulty)
+                addLog(`Set difficulty to ` + difficulty)
               }}
             />
           </div>
@@ -41,13 +42,19 @@ const RollsShowcase = () => {
           onClick={() => {
             const res = roll()
             setResultD100(res)
-            addLog(`Roll ${res} against DC ${difficulty}; result is ${getThrowResultAsString(res, difficulty)}`)
+            addLog(
+              `Roll ${res} against DC ${difficulty}; result is ${getThrowResultAsString(
+                res,
+                difficulty
+              )}`
+            )
           }}
         >
           Roll d100
         </button>
         <p className="mt-2">
-          Result: <strong>{resultD100 || ''}</strong>({resultD100 && getThrowResultAsString(resultD100, difficulty)})
+          Result: <strong>{resultD100 || ''}</strong>(
+          {resultD100 && getThrowResultAsString(resultD100, difficulty)})
         </p>
       </section>
 
