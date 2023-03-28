@@ -40,6 +40,7 @@ const config: GatsbyConfig = {
       options: rootDirsConfig,
     },
     `gatsby-plugin-sass`,
+    `gatsby-plugin-sass`
   ],
 }
 
