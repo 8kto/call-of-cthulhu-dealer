@@ -1,7 +1,11 @@
+import type { HeadFC, PageProps } from 'gatsby'
+
+import * as React from 'react'
+
 import RollsShowcase from 'components/showcase/RollsShowcase'
 import TrackerShowcase from 'components/showcase/TrackerShowcase'
-import type { HeadFC, PageProps } from 'gatsby'
-import * as React from 'react'
+import { combatantsMock } from 'shared/mocks/InitiativeTracker'
+
 import 'styles/styles.scss'
 
 const ShowcasePage: React.FC<PageProps> = () => {
@@ -10,7 +14,7 @@ const ShowcasePage: React.FC<PageProps> = () => {
       <h1 className="title is-2">Showcase</h1>
       <div className="columns">
         <RollsShowcase />
-        <TrackerShowcase />
+        <TrackerShowcase combatants={combatantsMock} />
       </div>
     </main>
   )
