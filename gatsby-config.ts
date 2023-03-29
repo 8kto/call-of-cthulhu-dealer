@@ -1,7 +1,8 @@
 import type { GatsbyConfig } from 'gatsby'
-import { IPluginRefOptions } from 'gatsby'
-import path from 'path'
+
 import fs from 'fs'
+import path from 'path'
+import { IPluginRefOptions } from 'gatsby'
 
 const srcDirs = fs.readdirSync(path.resolve(__dirname, 'src'))
 const rootDirsConfig: IPluginRefOptions = {}
@@ -40,7 +41,7 @@ const config: GatsbyConfig = {
       options: rootDirsConfig,
     },
     `gatsby-plugin-sass`,
-    `gatsby-plugin-sass`
+    `gatsby-plugin-sass`,
   ],
 }
 

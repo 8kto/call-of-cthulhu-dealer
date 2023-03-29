@@ -4,7 +4,6 @@ module.exports = {
   },
   extends: `react-app`,
   rules: {
-    'prefer-const': ['off'],
     'no-var': 'error',
     'import/no-extraneous-dependencies': 'error',
     '@typescript-eslint/ban-ts-comment': 'off',
@@ -32,12 +31,8 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-        'newlines-between': 'always',
-        alphabetize: {
-          order: 'asc',
-          caseInsensitive: true,
-        },
+        groups: ['type', ['builtin', 'external'], 'internal', ['parent', 'sibling', 'index']],
+        'newlines-between': 'always-and-inside-groups',
       },
     ],
     'newline-before-return': 'error',
