@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+
 import { roll } from 'shared/utils/random'
 import { getThrowResultAsString } from 'shared/utils/translation'
 import { Dice } from 'types'
+import { selectDiceTrayValue, setTrayValue } from 'store/slices/diceTray'
+import { useAppDispatch, useAppSelector } from 'shared/hooks'
 
 // todo merge styles
 import './styles.scss'
@@ -12,6 +15,9 @@ const RollsShowcase = () => {
   const [difficulty, setDifficulty] = useState<number>(50)
   const [log, setLog] = useState<Array<string>>([])
 
+  const count = useAppSelector(selectDiceTrayValue)
+  const dispatch = useAppDispatch()
+
   const addLog = (msg: string) => {
     setLog(prevState => [...prevState, msg])
   }
@@ -20,6 +26,7 @@ const RollsShowcase = () => {
     <div className="column">
       <section className="box mb-4">
         <h2>Roll d100</h2>
+        Count: <span>{count}</span>
         <div className="field">
           <label className="label">Enter the difficulty</label>
           <div className="control">
@@ -41,6 +48,7 @@ const RollsShowcase = () => {
           className="button is-primary"
           onClick={() => {
             const res = roll()
+            dispatch(setTrayValue(res))
             setResultD100(res)
             addLog(
               `Roll ${res} against DC ${difficulty}; result is ${getThrowResultAsString(
