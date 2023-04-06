@@ -16,3 +16,10 @@ export enum Dice {
   d20 = 20,
   d100 = 100,
 }
+
+export type Nullable<T> = T | null
+
+export interface Throw {
+  dice: Dice
+  result: number
+}
