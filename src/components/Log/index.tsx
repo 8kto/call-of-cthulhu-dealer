@@ -14,22 +14,23 @@ const Log = () => {
 
   useEffect(() => {
     setLog(log => log.concat(traySlice as Throw))
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [traySlice])
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [log])
 
   return (
     <div className="logging-content">
       {log.map(
         (record, idx) =>
           record && (
-            <>
-              <p key={idx}>
-                Throw {record.result} (d{record.dice})
-              </p>
-              <div ref={bottomRef} />
-            </>
+            <p key={idx} className="mb-1">
+              Throw {record.result} (d{record.dice})
+            </p>
           )
       )}
+      <div ref={bottomRef} />
     </div>
   )
 }
