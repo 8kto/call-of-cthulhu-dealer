@@ -1,27 +1,19 @@
 import React, { useState } from 'react'
 
+import { Dice } from 'types'
 import { roll } from 'shared/utils/random'
 import { getThrowResultAsString } from 'shared/utils/translation'
-import { Dice } from 'types'
 import { selectDiceTrayValue, setTrayValue } from 'store/slices/diceTray'
 import { useAppDispatch, useAppSelector } from 'shared/hooks'
-
-// todo merge styles
-import './styles.scss'
+import Log from 'components/Log'
 
 const RollsShowcase = () => {
   const [difficulty, setDifficulty] = useState<number>(50)
-  const [log, setLog] = useState<Array<string>>([])
-
-  const result = useAppSelector(selectDiceTrayValue)
+  const { result } = useAppSelector(selectDiceTrayValue) || {}
   const dispatch = useAppDispatch()
 
-  const addLog = (msg: string) => {
-    setLog(prevState => [...prevState, msg])
-  }
-
   const dispatchResult = (dice: Dice) => {
-    dispatch(setTrayValue(roll(dice)))
+    dispatch(setTrayValue({ result: roll(dice), dice }))
   }
 
   return (
@@ -43,7 +35,6 @@ const RollsShowcase = () => {
               onChange={e => {
                 const difficulty = +e.target.value
                 setDifficulty(difficulty)
-                addLog(`Set difficulty to ` + difficulty)
               }}
             />
           </div>
@@ -52,14 +43,7 @@ const RollsShowcase = () => {
           type="button"
           className="button is-primary"
           onClick={() => {
-            const res = roll()
             dispatchResult(Dice.d100)
-            addLog(
-              `Roll ${res} against DC ${difficulty}; result is ${getThrowResultAsString(
-                res,
-                difficulty
-              )}`
-            )
           }}
         >
           Roll d100
@@ -88,12 +72,7 @@ const RollsShowcase = () => {
 
       <section className="box mb-4">
         <h2 className="title">Log</h2>
-        <div className="logging-content">
-          {log.map((line, id) => (
-            // @ts-ignore
-            <p id={id}>{line}</p>
-          ))}
-        </div>
+        <Log />
       </section>
     </div>
   )
