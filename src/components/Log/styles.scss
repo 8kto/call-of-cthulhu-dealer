@@ -1,9 +1,6 @@
 .logging-content {
   max-height: 200px;
   overflow-y: scroll;
-  border: 1px dashed;
-}
-
-.logging-content p {
-
+  border: 1px solid #ddd;
+  padding: 0 0.5rem;
 }

@@ -10,10 +10,12 @@ import Result from 'components/Result'
 
 import { getValueWithinRange } from './helpers'
 
+const DEFAULT_DIFFICULTY = 50
+
 const RollsShowcase = () => {
   const dispatch = useAppDispatch()
   const { difficulty } = useAppSelector(selectDiceTray) || {}
-  const [localDiff, setLocalDiff] = useState<Nullable<number>>(difficulty)
+  const [localDiff, setLocalDiff] = useState<Nullable<number>>(DEFAULT_DIFFICULTY)
 
   const dispatchThrowResult = (dice: Dice) => {
     dispatch(setTrayValue({ result: roll(dice), dice }))

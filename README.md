@@ -14,7 +14,5 @@ Local website is now running at http://localhost:8000
 
 ## TODO
 + Dice d100 widget
-+ Throwing dice feature
 + Combat initiative tracker
 + NPC generator
-+ Convert showcase to Storybook ?
