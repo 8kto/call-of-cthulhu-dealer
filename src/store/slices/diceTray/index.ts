@@ -34,6 +34,7 @@ export const counterSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { setTrayValue, setDifficulty, resetDifficulty } = counterSlice.actions
 
+export const selectDiceTray = (state: RootState) => state.tray
 export const selectDiceTrayValue = (state: RootState) => state.tray.value
 
 export default counterSlice.reducer

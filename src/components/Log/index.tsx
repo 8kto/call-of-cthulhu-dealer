@@ -9,12 +9,12 @@ import './styles.scss'
 
 const Log = () => {
   const bottomRef = useRef<HTMLDivElement>(null)
-  const traySlice = useAppSelector(selectDiceTrayValue)
+  const trayValue = useAppSelector(selectDiceTrayValue)
   const [log, setLog] = useState<Throw[]>([])
 
   useEffect(() => {
-    setLog(log => log.concat(traySlice as Throw))
-  }, [traySlice])
+    setLog(log => log.concat(trayValue as Throw))
+  }, [trayValue])
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })

@@ -1,20 +1,38 @@
-import React, { useState } from 'react'
+import React, { ChangeEventHandler, useEffect, useState } from 'react'
+import debounce from 'debounce'
 
-import { Dice } from 'types'
+import { Dice, Nullable } from 'types'
 import { roll } from 'shared/utils/random'
-import { getThrowResultAsString } from 'shared/utils/translation'
-import { selectDiceTrayValue, setTrayValue } from 'store/slices/diceTray'
+import { selectDiceTray, setDifficulty, setTrayValue } from 'store/slices/diceTray'
 import { useAppDispatch, useAppSelector } from 'shared/hooks'
 import Log from 'components/Log'
 import Result from 'components/Result'
 
-const RollsShowcase = () => {
-  const [difficulty, setDifficulty] = useState<number>(50)
-  const dispatch = useAppDispatch()
+import { getValueWithinRange } from './helpers'
 
-  const dispatchResult = (dice: Dice) => {
+const RollsShowcase = () => {
+  const dispatch = useAppDispatch()
+  const { difficulty } = useAppSelector(selectDiceTray) || {}
+  const [localDiff, setLocalDiff] = useState<Nullable<number>>(difficulty)
+
+  const dispatchThrowResult = (dice: Dice) => {
     dispatch(setTrayValue({ result: roll(dice), dice }))
   }
+
+  const handleDiffChange: ChangeEventHandler<HTMLInputElement> = event => {
+    const element = event.target as HTMLInputElement
+    const { min, max, value } = element
+
+    setLocalDiff(getValueWithinRange(+min, +max, +value))
+  }
+
+  useEffect(() => {
+    if (localDiff) {
+      const fire = debounce(() => dispatch(setDifficulty(localDiff)), 200)
+
+      fire()
+    }
+  }, [localDiff])
 
   return (
     <div className="column">
@@ -24,47 +42,50 @@ const RollsShowcase = () => {
       </section>
       <section className="box mb-4">
         <h2>Roll d100</h2>
-        <div className="field">
-          <label className="label">Enter the difficulty</label>
-          <div className="control">
-            <input
-              type="number"
-              className="input"
-              placeholder="Enter the difficulty"
-              value={difficulty}
-              onChange={e => {
-                const difficulty = +e.target.value
-                setDifficulty(difficulty)
-              }}
-            />
+        <form action="">
+          <div className="field has-addons">
+            <div className="control">
+              <input
+                type="number"
+                className="input"
+                placeholder="DC"
+                value={`${localDiff}`}
+                max={99}
+                min={0}
+                maxLength={2}
+                onChange={handleDiffChange}
+              />
+            </div>
+            <div className="control">
+              <button
+                type="button"
+                className="button is-primary"
+                onClick={() => {
+                  dispatchThrowResult(Dice.d100)
+                }}
+              >
+                Roll d100
+              </button>
+            </div>
           </div>
-        </div>
-        <button
-          type="button"
-          className="button is-primary"
-          onClick={() => {
-            dispatchResult(Dice.d100)
-          }}
-        >
-          Roll d100
-        </button>
+        </form>
       </section>
       <section className="box mb-4">
         <h2 className="title">Roll other dices</h2>
         <div className="buttons">
-          <button type="button" className="button" onClick={() => dispatchResult(Dice.d20)}>
+          <button type="button" className="button" onClick={() => dispatchThrowResult(Dice.d20)}>
             Roll d20
           </button>
-          <button type="button" className="button" onClick={() => dispatchResult(Dice.d10)}>
+          <button type="button" className="button" onClick={() => dispatchThrowResult(Dice.d10)}>
             Roll d10
           </button>
-          <button type="button" className="button" onClick={() => dispatchResult(Dice.d6)}>
+          <button type="button" className="button" onClick={() => dispatchThrowResult(Dice.d6)}>
             Roll d6
           </button>
-          <button type="button" className="button" onClick={() => dispatchResult(Dice.d4)}>
+          <button type="button" className="button" onClick={() => dispatchThrowResult(Dice.d4)}>
             Roll d4
           </button>
-          <button type="button" className="button" onClick={() => dispatchResult(Dice.d2)}>
+          <button type="button" className="button" onClick={() => dispatchThrowResult(Dice.d2)}>
             Roll d2
           </button>
         </div>
