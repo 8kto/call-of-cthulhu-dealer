@@ -6,10 +6,10 @@ import { getThrowResultAsString } from 'shared/utils/translation'
 import { selectDiceTrayValue, setTrayValue } from 'store/slices/diceTray'
 import { useAppDispatch, useAppSelector } from 'shared/hooks'
 import Log from 'components/Log'
+import Result from 'components/Result'
 
 const RollsShowcase = () => {
   const [difficulty, setDifficulty] = useState<number>(50)
-  const { result } = useAppSelector(selectDiceTrayValue) || {}
   const dispatch = useAppDispatch()
 
   const dispatchResult = (dice: Dice) => {
@@ -19,8 +19,8 @@ const RollsShowcase = () => {
   return (
     <div className="column">
       <section className="box mb-4">
-        <h2>Result: {result || ''}</h2>
-        <h3 className="subtitle">{result && getThrowResultAsString(result, difficulty)}</h3>
+        <h2>Last throw</h2>
+        <Result />
       </section>
       <section className="box mb-4">
         <h2>Roll d100</h2>
@@ -71,7 +71,7 @@ const RollsShowcase = () => {
       </section>
 
       <section className="box mb-4">
-        <h2 className="title">Log</h2>
+        <h2 className="title">Throws log</h2>
         <Log />
       </section>
     </div>
