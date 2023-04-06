@@ -3,18 +3,19 @@ import debounce from 'debounce'
 
 import { Dice, Nullable } from 'types'
 import { roll } from 'shared/utils/random'
-import { selectDiceTray, setDifficulty, setTrayValue } from 'store/slices/diceTray'
-import { useAppDispatch, useAppSelector } from 'shared/hooks'
+import { setDifficulty, setTrayValue } from 'store/slices/diceTray'
+import { useAppDispatch } from 'shared/hooks'
 import Log from 'components/Log'
 import Result from 'components/Result'
+import DiceWidget from 'components/DiceWidget'
 
 import { getValueWithinRange } from './helpers'
 
 const DEFAULT_DIFFICULTY = 50
+const DICES = Object.values(Dice).filter(Number)
 
 const RollsShowcase = () => {
   const dispatch = useAppDispatch()
-  const { difficulty } = useAppSelector(selectDiceTray) || {}
   const [localDiff, setLocalDiff] = useState<Nullable<number>>(DEFAULT_DIFFICULTY)
 
   const dispatchThrowResult = (dice: Dice) => {
@@ -75,21 +76,9 @@ const RollsShowcase = () => {
       <section className="box mb-4">
         <h2 className="title">Roll other dices</h2>
         <div className="buttons">
-          <button type="button" className="button" onClick={() => dispatchThrowResult(Dice.d20)}>
-            Roll d20
-          </button>
-          <button type="button" className="button" onClick={() => dispatchThrowResult(Dice.d10)}>
-            Roll d10
-          </button>
-          <button type="button" className="button" onClick={() => dispatchThrowResult(Dice.d6)}>
-            Roll d6
-          </button>
-          <button type="button" className="button" onClick={() => dispatchThrowResult(Dice.d4)}>
-            Roll d4
-          </button>
-          <button type="button" className="button" onClick={() => dispatchThrowResult(Dice.d2)}>
-            Roll d2
-          </button>
+          {DICES.map(d => (
+            <DiceWidget key={d} dice={d as unknown as Dice} />
+          ))}
         </div>
       </section>
 

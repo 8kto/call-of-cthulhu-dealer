@@ -14,7 +14,7 @@ type ResultOpts = {
   className?: string
 }
 
-const classMap = {
+const CLASS_MAP = {
   [Results.FUMBLE]: 'is-danger',
   [Results.FAIL]: 'is-black',
   [Results.SUCCESS]: 'is-success',
@@ -39,7 +39,7 @@ const Result = ({
   )
 
   if (shouldShowDifficultyResult) {
-    const classNameTag = `tag ${classMap[getThrowResult(value?.result, difficulty)]}`
+    const classNameTag = `tag ${CLASS_MAP[getThrowResult(value?.result, difficulty)]}`
 
     return (
       <SlotContainer className={className}>
