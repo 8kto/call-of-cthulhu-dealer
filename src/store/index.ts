@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import diceTrayReducer from './slices/diceTray'
+import combatReducer from './slices/combat'
 
 export const store = configureStore({
   reducer: {
     tray: diceTrayReducer,
+    combat: combatReducer,
   },
 })
 
