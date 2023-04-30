@@ -4,14 +4,14 @@ import React from 'react'
 
 import InitiativeTracker from 'components/InitiativeTracker'
 
-const TrackerShowcase = ({ combatants }: { combatants: Character[] }) => {
+const TrackerShowcase = () => {
   return (
     <div className="column">
       <section className="box">
         <h2 className="title">Initiative tracker</h2>
 
         <div className="table-container">
-          <InitiativeTracker combatants={combatants} />
+          <InitiativeTracker />
         </div>
       </section>
     </div>

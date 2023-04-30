@@ -1,6 +1,9 @@
 import type { Character } from 'components/InitiativeTracker/types'
 
 import React, { useMemo, useState } from 'react'
+import { useSelector } from 'react-redux'
+
+import { selectCombat } from 'store/slices/combat'
 
 import FirearmsIcon from 'images/icons/firearms.png'
 
@@ -43,17 +46,21 @@ const TableRow = ({ character }: { character: Character }) => {
   )
 }
 
-const TrackerShowcase = ({ combatants }: { combatants: Character[] }) => {
-  const sortedCombatants = useMemo(
-    () =>
-      combatants.sort(
+const TrackerShowcase = () => {
+  const { combatants } = useSelector(selectCombat)
+
+  const sortedCombatants = useMemo(() => {
+    const copy = combatants?.slice?.() || []
+
+    return (
+      copy.sort(
         (
           { initiative: i1, hasFirearmsPrepared: f1 },
           { initiative: i2, hasFirearmsPrepared: f2 }
         ) => i2 + (f2 ? I_BONUS : 0) - (i1 + (f1 ? I_BONUS : 0))
-      ),
-    [combatants]
-  )
+      ) || []
+    )
+  }, [combatants])
 
   return (
     <table className="table is-striped is-hoverable is-fullwidth">
